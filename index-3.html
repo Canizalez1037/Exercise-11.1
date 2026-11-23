@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Employee Table</title>
+    <style>
+        * { box-sizing: border-box; }
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            font-size: 100%;
+            width: 80%;
+            max-width: 900px;
+            margin: 1em auto;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            border: 1px solid black;
+        }
+        caption {
+            font-size: 1.5em;
+            font-weight: bold;
+            padding: .45em 0 .6em;
+        }
+        thead, tfoot { background-color: lightgreen; }
+        th, td {
+            padding: .35em .5em;
+            text-align: left;
+            vertical-align: top;
+            border-bottom: 1px solid black;
+        }
+        thead th { border-bottom: 1px solid black; }
+        .department {
+            font-weight: bold;
+            vertical-align: top;
+            width: 25%;
+        }
+        thead th:last-child, tbody td:last-child, tfoot td:last-child {
+            text-align: right;
+        }
+        tbody tr.group-start > * { border-top: 1px solid black; }
+        tfoot td { font-weight: bold; border-top: 1px solid black; }
+        tfoot td:first-child { text-align: right; }
+
+        /* Below 640px, each employee becomes a readable labeled card. */
+        @media screen and (max-width: 639px) {
+            body { width: 95%; }
+            table, tbody, tr, td, tfoot { display: block; width: 100%; }
+            table { border: 0; }
+            thead { display: none; }
+            tbody tr {
+                border: 1px solid black;
+                margin-bottom: .75em;
+            }
+            tbody td {
+                display: block;
+                border: 0;
+                padding: .35em .6em;
+                text-align: left !important;
+                overflow-wrap: anywhere;
+            }
+            tbody td::before {
+                display: block;
+                font-weight: bold;
+                margin-bottom: .15em;
+            }
+            tbody td[data-label]::before { content: attr(data-label); }
+            tbody .department {
+                width: 100%;
+                background-color: #e5f7e5;
+                border-bottom: 1px solid black;
+            }
+            tbody tr:nth-child(even) { background-color: #f1f1f1; }
+            tbody tr.group-start > * { border-top: 0; }
+            tfoot { border: 1px solid black; background-color: lightgreen; padding: .5em; }
+            tfoot tr { display: flex; justify-content: space-between; gap: 1em; }
+            tfoot td { width: auto; padding: 0; border: 0; }
+            tfoot td:first-child { text-align: left; }
+        }
+    </style>
+</head>
+<body>
+    <table>
+        <caption>Employee Table</caption>
+        <thead>
+            <tr>
+                <th scope="col">Department</th>
+                <th scope="col">Name</th>
+                <th scope="col">E-mail</th>
+                <th scope="col">Years of Service</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr class="group-start">
+                <th scope="rowgroup" rowspan="3" class="department">Editorial</th>
+                <td data-label="Name">Joel Murach</td>
+                <td data-label="E-mail">joelmurach@yahoo.com</td>
+                <td data-label="Years of Service">22</td>
+            </tr>
+            <tr>
+                <td data-label="Name">Anne Boehm</td>
+                <td data-label="E-mail">anne@murach.com</td>
+                <td data-label="Years of Service">34</td>
+            </tr>
+            <tr>
+                <td data-label="Name">Zak Ruvalcaba</td>
+                <td data-label="E-mail">zak@modulemedia.com</td>
+                <td data-label="Years of Service">4</td>
+            </tr>
+            <tr class="group-start">
+                <th scope="rowgroup" rowspan="2" class="department">Marketing</th>
+                <td data-label="Name">Judy Taylor</td>
+                <td data-label="E-mail">judy@murach.com</td>
+                <td data-label="Years of Service">39</td>
+            </tr>
+            <tr>
+                <td data-label="Name">Bethany Lee</td>
+                <td data-label="E-mail">bethany@murach.com</td>
+                <td data-label="Years of Service">10</td>
+            </tr>
+            <tr class="group-start">
+                <th scope="rowgroup" rowspan="2" class="department">Customer Service</th>
+                <td data-label="Name">Kelly Slivkoff</td>
+                <td data-label="E-mail">kelly@murach.com</td>
+                <td data-label="Years of Service">25</td>
+            </tr>
+            <tr>
+                <td data-label="Name">Juliette Baylon</td>
+                <td data-label="E-mail">juliette@murach.com</td>
+                <td data-label="Years of Service">1</td>
+            </tr>
+        </tbody>
+        <tfoot>
+            <tr>
+                <td colspan="3">Total Years of Service</td>
+                <td>105</td>
+            </tr>
+        </tfoot>
+    </table>
+</body>
+</html>
